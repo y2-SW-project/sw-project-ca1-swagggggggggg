@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
 //functionality
-use App\Http\Controllers\User\HomeController as UserPostController;
-use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\User\AlbumController as UserAlbumController;
+use App\Http\Controllers\Admin\AlbumController as AdminAlbumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ use App\Http\Controllers\Admin\PostController as AdminPostController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -32,25 +32,18 @@ Route::get('admin/home', [App\Http\Controllers\Admin\HomeController::class, 'ind
 Route::get('user/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.home');
 
 //page control
-Route::get('/welcome', [PageController::class, 'welcome'])->name('welcome');
+Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 
 //functionality
-Route::get('/user/posts', [UserPostController::class, 'index'])->name('user.posts.index');
-Route::get('/user/posts/{id}', [UserPostController::class, 'show'])->name('user.posts.show');
-Route::get('/user/posts/create', [UserPostController::class, 'create'])->name('user.posts.create');
-Route::post('/user/posts/store', [UserPostController::class, 'store'])->name('user.posts.store');
+Route::get('/user/albums', [UserAlbumController::class, 'index'])->name('user.albums.index');
+Route::get('/user/albums/{id}', [UserAlbumController::class, 'show'])->name('user.albums.show');
+Route::post('/user/albums/store', [UserAlbumController::class, 'store'])->name('user.albums.store');
 
-
-Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
-Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
-Route::get('/admin/posts/{id}', [AdminPostController::class, 'show'])->name('admin.posts.show');
-Route::post('/admin/posts/store', [AdminPostController::class, 'store'])->name('admin.posts.store');
-Route::delete('/admin/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy');
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/albums', [AdminAlbumController::class, 'index'])->name('admin.albums.index');
+Route::get('/admin/albums/create', [AdminAlbumController::class, 'create'])->name('admin.albums.create');
+Route::get('/admin/albums/{id}', [AdminAlbumController::class, 'show'])->name('admin.albums.show');
+Route::post('/admin/albums/store', [AdminAlbumController::class, 'store'])->name('admin.albums.store');
+Route::get('/admin/albums/{id}/edit', [AdminAlbumController::class, 'edit'])->name('admin.albums.edit');
+Route::put('/admin/albums/{id}', [AdminAlbumController::class, 'update'])->name('admin.albums.update');
+Route::delete('/admin/albums/{id}', [AdminAlbumController::class, 'destroy'])->name('admin.albums.destroy');

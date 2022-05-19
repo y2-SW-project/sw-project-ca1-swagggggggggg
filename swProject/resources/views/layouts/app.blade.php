@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/please.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -27,15 +28,15 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
 
-                <!-- <a class="text-muted navbar-brand" href="{{ url('/home') }}">
-                    {{ ('Login') }}
-                </a> -->
-                <a class="text-muted navbar-brand" href="{{ url('/welcome') }}">
+                <a class="text-muted navbar-brand" href="{{ url('/home') }}">
+                    {{ ('Home') }}
+                </a>
+                <a class="text-muted navbar-brand" href="{{ url('/') }}">
                     {{('Welcome') }}
                 </a>
 
                 <a class="text-muted navbar-brand" href="{{ url('/about') }}">
-                    {{ ('Documentation') }}
+                    {{ ('About') }}
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

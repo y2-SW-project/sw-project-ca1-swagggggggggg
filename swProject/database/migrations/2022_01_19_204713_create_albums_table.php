@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreateAlbumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            
+        Schema::create('albums', function (Blueprint $table) {
             $table->id();
             
-            // // unsigned bigInts for the FKs
-            // $table->bigInteger('user_id')->unsigned();
-
-            // // foreign keys
-            // $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
-
-            $table->string('post_text');
+            $table->string('title');
+            $table->string('description');
+            $table->string('artists');
+            $table->string('tracks');
             $table->date('release_date');
+
+            $table->decimal('price');
+            $table->string('contact_name');
+            $table->string('contact_email');
+            $table->string('contact_phone');
 
             $table->timestamps();
         });
@@ -37,6 +38,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('albums');
     }
 }

@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
         $admin= new User();
         $admin->name= 'admin1';
-        $admin->email= 'adminexample@gmail.com';
+        $admin->email= 'adminexample@email.com';
         $admin->password= Hash::make('password');
         
         $admin->save();
@@ -32,8 +32,8 @@ class UserSeeder extends Seeder
         $admin->roles()->attach($role_admin);
 
         $user= new User();
-        $user->name= 'bruh';
-        $user->email= 'userexample@gmail.com';
+        $user->name= 'user1';
+        $user->email= 'userexample@email.com';
         $user->password= Hash::make('password');
         
         $user->save();

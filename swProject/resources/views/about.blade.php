@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">About Andrew's Albums</div>
+                <div class="card-header">About Vinny's Vinyls</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,18 +14,16 @@
                         </div>
                     @endif
 
-                   <div class="h1 px-1">Our Mission</div>
-                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque iure quibusdam ipsa earum esse unde delectus nemo dolores eum beatae.
+                   <div class="h1 px-1">Who is Vinny?</div>
+                   Vinny, full name Vincent Van Gogh, is our founder. Not to be confused with the Renaissance artist, our Vinny is an Italian-American who was sick of scouring eBay and other sites for rare vinyls. They were filled with ads and clutter, and so we were founded.
 
-                   <div class="h1 pt-2 pb-1">Our Goals</div>
+                   <div class="h1 pt-2 pb-1">Report :)</div>
                    <ol class="ps-3">
-                       <li class="pb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores nam, perspiciatis iste deserunt aspernatur nemo.</li>
-                       <li class="pb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nam numquam suscipit pariatur culpa odio adipisci sed!</li>
+                       <li class="pb-2">
+                           Click <a href="https://iadt-my.sharepoint.com/:w:/g/personal/n00201066_iadt_ie/EQo0F8sehjdApd_ZlnFxvEIBK3ELzrCZkbYCnGfppDLhwA?e=JcmOy5">here</a>.
+                       </li>
+                       <li class="pb-2">Let me know if there is any issue</li>
                    </ol>
-
-                   <div class="h1 pt-2 pb-1">Our Origins</div>
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime temporibus quae voluptatem, voluptates facilis fugit nemo sunt, distinctio, dolore excepturi praesentium! Ut labore quis consequuntur veritatis, pariatur sint voluptatum doloremque doloribus deserunt quibusdam odio necessitatibus error blanditiis magnam quaerat id quo inventore accusamus eos ullam sequi excepturi, culpa voluptatem. A ratione eveniet rem architecto harum hic suscipit voluptate eius cum, aliquam maxime earum nulla veniam deleniti.
                 </div>
             </div>
         </div>

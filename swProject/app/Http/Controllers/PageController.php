@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    //remove l8r
     public function welcome()
     {
         return view('welcome');

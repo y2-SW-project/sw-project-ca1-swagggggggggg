@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('You are logged in as a user!') }}
+
+                    <a class="mt-2 d-block" href="{{ route('user.albums.index')}}"> View All Albums</a>
                 </div>
             </div>
         </div>
