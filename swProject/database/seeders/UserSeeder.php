@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
         $admin->roles()->attach($role_admin);
 
         $user= new User();
-        $user->name= 'user1';
+        $user->name= 'bruh';
         $user->email= 'userexample@gmail.com';
         $user->password= Hash::make('password');
         

@@ -17,11 +17,11 @@ class CreatePostsTable extends Migration
             
             $table->id();
             
-            // unsigned bigInts for the FKs
-            $table->bigInteger('user_name')->unsigned();
+            // // unsigned bigInts for the FKs
+            // $table->bigInteger('user_id')->unsigned();
 
-            // foreign keys
-            $table->foreign('user_name')->references('name')->on('users')->onUpdate('cascade')->onDelete('restrict');
+            // // foreign keys
+            // $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
 
             $table->string('post_text');
             $table->date('release_date');

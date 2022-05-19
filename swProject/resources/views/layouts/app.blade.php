@@ -27,15 +27,15 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
 
-                <a class="text-muted navbar-brand" href="{{ url('/home') }}">
-                    {{ ('Home') }}
-                </a>
-                <a class="text-muted navbar-brand" href="{{ url('/') }}">
+                <!-- <a class="text-muted navbar-brand" href="{{ url('/home') }}">
+                    {{ ('Login') }}
+                </a> -->
+                <a class="text-muted navbar-brand" href="{{ url('/welcome') }}">
                     {{('Welcome') }}
                 </a>
 
                 <a class="text-muted navbar-brand" href="{{ url('/about') }}">
-                    {{ ('About') }}
+                    {{ ('Documentation') }}
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

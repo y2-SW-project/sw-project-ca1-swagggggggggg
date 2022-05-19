@@ -6,7 +6,7 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="card">
           <div class="card-header">
-            Add new Album
+            Add new post
           </div>
           <div class="card-body">
           <!-- this block is ran if the validation code in the controller fails
@@ -20,46 +20,19 @@
                 </ul>
               </div>
             @endif
-            <form method="POST" action="{{ route('admin.albums.store')  }}">
+            <form method="POST" action="{{ route('admin.posts.store')  }}">
               <input type="hidden" name="_token" value="{{  csrf_token()  }}">
               <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" />
+                <label class="d-block" for="post_text">Post Text</label>
+                <input class="mb-3 w-100 post-input" type="text" class="form-control" id="post_text" name="post_text" value="{{ old('post_text') }}" />
               </div>
-              <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" />
-              </div>
-              <div class="form-group">
-                <label for="artists">Artist(s)</label>
-                <input type="text" class="form-control" id="artists" name="artists" value="{{ old('artists') }}" />
-              </div>
-              <div class="form-group">
-                <label for="tracks">Tracks</label>
-                <input type="text" class="form-control" id="tracks" name="tracks" value="{{ old('tracks') }}" />
-              </div>
+
               <div class="form-group">
                 <label for="release_date">Release Date</label>
                 <input type="date" class="form-control" id="release_date" name="release_date" value="{{ old('release_date') }}" />
               </div>
-              <div class="form-group">
-                <label for="price">Price</label>
-                <input type="decimal" class="form-control" id="price" name="price" value="{{ old('price') }}" />
-              </div>
-              <div class="form-group">
-                <label for="contact_name">Contact Name</label>
-                <input type="text" class="form-control" id="contact_name" name="contact_name" value="{{ old('contact_name') }}" />
-              </div>
-              <div class="form-group">
-                <label for="contact_email">Contact Email</label>
-                <input type="email" class="form-control" id="contact_email" name="contact_email" value="{{ old('contact_email') }}" />
-              </div>
-              <div class="form-group">
-                <label for="contact_phone">Contact Phone</label>
-                <input type="text" class="form-control" id="contact_phone" name="contact_phone" value="{{ old('contact_phone') }}" />
-              </div>
 
-              <a href="{{ route('admin.albums.index') }}" class="btn btn-outline">Cancel</a>
+              <a href="{{ route('admin.posts.index') }}" class="btn btn-outline">Cancel</a>
               <button type="submit" class="btn btn-primary float-right">Submit</button>
             </form>
           </div>
