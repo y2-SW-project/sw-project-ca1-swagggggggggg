@@ -33,10 +33,10 @@ class AlbumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.albums.create');
-    }
+    // public function create()
+    // {
+    //     return view('admin.albums.create');
+    // }
 
     /**
      * Store a newly created resource in storage.

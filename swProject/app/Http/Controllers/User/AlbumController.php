@@ -34,10 +34,10 @@ class AlbumController extends Controller
          *
          * @return \Illuminate\Http\Response
          */
-        public function create()
-        {
-            return view('admin.albums.create');
-        }
+    //     public function create()
+    // {
+    //     return view('user.albums.create');
+    // }
 
         /**
          * Store a newly created resource in storage.
@@ -83,5 +83,44 @@ class AlbumController extends Controller
                 return view('user.albums.show', [
                     'album' => $album
                 ]);
+            }
+
+            /**
+             * Show the form for editing the specified resource.
+             *
+             * @param  int  $id
+             * @return \Illuminate\Http\Response
+             */
+            public function edit($id)
+            {
+                $album = Album::findOrFail($id);
+
+                // get the album above, and then the edit view
+                // will display the album, and allow the admin
+                // to edit the album.
+                return view('admin.albums.edit', [
+                    'album' => $album
+                ]);
+            }
+
+            public function destroy($id)
+            {
+                // $request->validate([
+                //     'user_id' => 'required',
+
+                //     function get_current_user_id() {
+                //         if ( ! function_exists( 'wp_get_current_user' ) ) {
+                //             return 0;
+                //         }
+                //         $user = wp_get_current_user();
+                //         return ( isset( $user->ID ) ? (int) $user->ID : 0 );
+                //     }
+                // ]);
+
+
+                $album = Album::findOrFail($id);
+                $album->delete();
+
+                return redirect()->route('user.albums.index');
             }
     }

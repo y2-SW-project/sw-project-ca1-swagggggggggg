@@ -8,9 +8,7 @@
           <div class="card-header align-items-center d-flex">
             <h5>Albums</h5>
 
-            <a href="{{ route('admin.albums.create') }}" class="ms-auto btn btn-primary">Add</a>
 
-            <!-- this modal unfortunately has a problem with the submit button -->
           <button type="button" class="ms-auto btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add listing
           </button>
