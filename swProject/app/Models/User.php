@@ -62,4 +62,9 @@ class User extends Authenticatable
     public function hasAnyRole($roles) {
         return null !== $this->roles()->whereIn('name', $roles)->first();
     }
+
+    public function albums()
+    {
+        return $this->hasMany(Album::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Album;
+use Illuminate\Support\Facades\Auth;
 
 
 class AlbumController extends Controller
@@ -49,21 +50,14 @@ class AlbumController extends Controller
         // when user clicks submit on the create view above
         // the album will be stored in the DB
         $request->validate([
-            'title' => 'required',
-            'description' =>'required|max:500',
+            'post_text' => 'required|min:20|max:250'
         ]);
 
         // if validation passes create the new book
         $album = new Album();
-        $album->title = $request->input('title');
-        $album->description = $request->input('description');
-        $album->artists = $request->input('artists');
-        $album->tracks = $request->input('tracks');
-        $album->release_date = $request->input('release_date');
-        $album->price = $request->input('price');
-        $album->contact_name = $request->input('contact_name');
-        $album->contact_email = $request->input('contact_email');
-        $album->contact_phone = $request->input('contact_phone');
+        $album->post_text = $request->input('post_text');
+        $album->location = $request->input('location');
+        
         $album->save();
 
         return redirect()->route('admin.albums.index');

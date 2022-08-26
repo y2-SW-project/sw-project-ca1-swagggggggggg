@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header align-items-center d-flex">
                 <h5>Albums</h5>
 
 <!-- this modal unfortunately has a problem with the submit button -->
@@ -31,42 +31,13 @@
 
               <div class="modal-body">
                 <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" />
+                  <label for="post_text">Post Text</label>
+                  <input type="text" class="form-control" id="post_text" name="post_text" value="{{ old('post_text') }}" />
                 </div>
                 <div class="form-group">
-                  <label for="description">Description</label>
-                  <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" />
+                  <label for="location">Location (optional)</label>
+                  <input type="text" class="form-control" id="location" name="location" value="{{ old('location') }}" />
                 </div>
-                <div class="form-group">
-                  <label for="artists">Artist(s)</label>
-                  <input type="text" class="form-control" id="artists" name="artists" value="{{ old('artists') }}" />
-                </div>
-                <div class="form-group">
-                  <label for="tracks">Tracks</label>
-                  <input type="text" class="form-control" id="tracks" name="tracks" value="{{ old('tracks') }}" />
-                </div>
-                <div class="form-group">
-                  <label for="release_date">Release Date</label>
-                  <input type="date" class="form-control" id="release_date" name="release_date" value="{{ old('release_date') }}" />
-                </div>
-                <div class="form-group">
-                  <label for="price">Price</label>
-                  <input type="decimal" class="form-control" id="price" name="price" value="{{ old('price') }}" />
-                </div>
-                <div class="form-group">
-                  <label for="contact_name">Contact Name</label>
-                  <input type="text" class="form-control" id="contact_name" name="contact_name" value="{{ old('contact_name') }}" />
-                </div>
-                <div class="form-group">
-                  <label for="contact_email">Contact Email</label>
-                  <input type="email" class="form-control" id="contact_email" name="contact_email" value="{{ old('contact_email') }}" />
-                </div>
-                <div class="form-group">
-                  <label for="contact_phone">Contact Phone</label>
-                  <input type="text" class="form-control" id="contact_phone" name="contact_phone" value="{{ old('contact_phone') }}" />
-                </div>
-            
               </div>
 
               <div class="modal-footer">
@@ -94,22 +65,24 @@
                             <th>Tracks</th>
                             <th>Release Date</th>
                         </thead>
-                        <tbody>
-                            @foreach ($albums as $album)
-                            <tr data-id="{{ $album->id }}">
-                                <td>{{ $album->title }}</td>
-                                <td>{{ $album->description }}</td>
-                                <td>{{ $album->artists }}</td>
-                                <td>{{ $album->tracks }}</td>
-                                <td>{{ $album->release_date }}</td>
 
-                                <td>
-                                    <a href="{{ route('user.albums.show', $album->id) }}" class="btn btn-dark">View</a>
-                                    <a href="{{ route('user.albums.edit', $album->id) }}" class="mb-2 btn btn-warning">Edit</a>
+                        <tbody>
+                          <!-- v debug v -->
+                         @foreach ($albums as $album)
+                            <tr data-id="{{ $album->id }}">
+                                <td>{{ $album->users->name}}</td>
+                                <td>{{ $album->location}}</td>
+                                <td>{{ $album->post_text }}</td>
+                                <td>{{ $album->updated_at }}</td>
+
+                                <!-- dropdown? -->
+                                <td class="d-flex">
+                                    <!-- <a href="{{ route('user.albums.show', $album->id) }}" class="btn btn-dark mx-1 mb-1">View</a> -->
+                                    <a href="{{ route('user.albums.edit', $album->id) }}" class="btn btn-warning mx-1 mb-1">Edit</a>
                                     <form method="POST" action="{{ route('user.albums.destroy', $album->id) }}">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token"  value="{{ csrf_token() }}">
-                                    <button type="submit" class="form-cotrol mb-2 btn btn-danger">Delete</a>
+                                    <button type="submit" class="form-control btn btn-danger mx-1 mb-1">Delete</a>
                                     </form>
                                   </form>
                                 </td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Album;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AlbumController extends Controller
 {
@@ -21,23 +22,13 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //get all from albums table
-        $albums = Album::all();
+        $albums = Album::with('users')->get();
+
         return view('user.albums.index', [
             //$albums goes into 'album' so the view can see it
             'albums' => $albums
         ]);
-    }
-
-    /**
-         * Show the form for creating a new resource.
-         *
-         * @return \Illuminate\Http\Response
-         */
-    //     public function create()
-    // {
-    //     return view('user.albums.create');
-    // }
+    }        
 
         /**
          * Store a newly created resource in storage.
@@ -50,21 +41,17 @@ class AlbumController extends Controller
             // when user clicks submit on the create view above
             // the album will be stored in the DB
             $request->validate([
-                'title' => 'required',
-                'description' =>'required|max:500',
+                'post_text' => 'required|min:20|max:250'
             ]);
+
+            $id= Auth::id();
 
             // if validation passes create the new book
             $album = new Album();
-            $album->title = $request->input('title');
-            $album->description = $request->input('description');
-            $album->artists = $request->input('artists');
-            $album->tracks = $request->input('tracks');
-            $album->release_date = $request->input('release_date');
-            $album->price = $request->input('price');
-            $album->contact_name = $request->input('contact_name');
-            $album->contact_email = $request->input('contact_email');
-            $album->contact_phone = $request->input('contact_phone');
+            $album->user_id = $id;
+            $album->post_text = $request->input('post_text');
+            $album->location = $request->input('location');
+
             $album->save();
 
             return redirect()->route('user.albums.index');

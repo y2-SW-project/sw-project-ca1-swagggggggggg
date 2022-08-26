@@ -25,41 +25,14 @@
               <input type="hidden" name="_method" value="PUT">
 
               <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $album->title) }}" />
+                <label for="post_text">Post Text</label>
+                <input type="text" class="form-control" id="post_text" name="post_text" value="{{ old('post_text', $album->post_text) }}" />
               </div>
               <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $album->description) }}" />
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location" value="{{ old('location', $album->location) }}" />
               </div>
-              <div class="form-group">
-                <label for="artists">Artist(s)</label>
-                <input type="text" class="form-control" id="artists" name="artists" value="{{ old('artists', $album->artists) }}" />
-              </div>
-              <div class="form-group">
-                <label for="tracks">Tracks</label>
-                <input type="text" class="form-control" id="tracks" name="tracks" value="{{ old('tracks', $album->tracks) }}" />
-              </div>
-              <div class="form-group">
-                <label for="release_date">Release Date</label>
-                <input type="date" class="form-control" id="release_date" name="release_date" value="{{ old('release_date', $album->release_date) }}" />
-              </div>
-              <div class="form-group">
-                <label for="price">Price</label>
-                <input type="decimal" class="form-control" id="price" name="price" value="{{ old('price', $album->price) }}" />
-              </div>
-              <div class="form-group">
-                <label for="contact_name">Contact Name</label>
-                <input type="text" class="form-control" id="contact_name" name="contact_name" value="{{ old('contact_name', $album->contact_name) }}" />
-              </div>
-              <div class="form-group">
-                <label for="contact_email">Contact Email</label>
-                <input type="email" class="form-control" id="contact_email" name="contact_email" value="{{ old('contact_email', $album->contact_email) }}" />
-              </div>
-              <div class="form-group">
-                <label for="contact_phone">Contact Phone</label>
-                <input type="text" class="form-control" id="contact_phone" name="contact_phone" value="{{ old('contact_phone', $album->contact_phone) }}" />
-              </div>
+              
 
               <a href="{{ route('admin.albums.index') }}" class="btn btn-outline">Cancel</a>
               <button type="submit" class="btn btn-primary float-right">Submit</button>
