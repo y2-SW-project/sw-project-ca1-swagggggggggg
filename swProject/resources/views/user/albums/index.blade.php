@@ -6,13 +6,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                <h5>Albums</h5>
+                <h5>Dashboard</h5>
 
 <!-- this modal unfortunately has a problem with the submit button -->
 <!--                           HAD* -> hierarchy error: form was in modal body, so submit had no link -->
 
                 <button type="button" class="ms-auto btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add listing
+            Add post
           </button>
 
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -50,47 +50,58 @@
               </div>
             </div>
           </div>
-                
+        </div>                          
+
+
+                <div class="card border border-2 border-secondary rounded">
+                  <div class="card-body">
+                    
+                  @if (count($albums)=== 0)
+                  <p class="text-muted">Start the conversation!</p>
+                  @else
+
+                  @foreach ($albums as $album)
+                      <div data-id="{{ $album->id }}">
+
+                        <div class="d-flex mb-0 align-items-top">
+                          <h2 class="text-decoration-underline fs-5">{{ $album->users->name}}</h2>
+
+                          @if (auth()->id() == $album->user_id)
+
+                          <div class="dropdown ms-auto">
+                            <button class="btn btn-sm btn-dark fs-5 rounded-5 py-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                              <li>
+                                <a href="{{ route('user.albums.edit', $album->id) }}" class="form-control btn btn-warning my-1">Edit</a>
+                              </li>
+
+                              <li>
+                                <form method="POST" action="{{ route('user.albums.destroy', $album->id) }}">
+                                  <input type="hidden" name="_method" value="DELETE">
+                                  <input type="hidden" name="_token"  value="{{ csrf_token() }}">
+                                  <button type="submit" class="form-control btn btn-danger mb-1">Delete</a>
+                                </form>
+                              </li>
+                            </ul>
+                            
+                          </div>
+                          @endif
+                        </div>
+
+                          <div class="d-block text-capitalize fs-6 mb-1">{{ $album->location}}</div>
+                          <div class="d-flex mb-4">
+                            <div class="pe-4 text-break">{{ $album->post_text }}</div>
+                            <div class="text-muted text-nowrap ms-auto">{{ $album->updated_at }}</div>
+                          </div>
+                      </div>
+                  @endforeach
+                  </div>
                 </div>
-                <div class="card-body">
-                    @if (count($albums)=== 0)
-                    <p class="text-muted">Start the conversation!</p>
-                    @else
-                    <table id="table-albums" class="table table-hover">
-                        <thead>
-                            <!-- includes album info -->
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Artist(s)</th>
-                            <th>Tracks</th>
-                            <th>Release Date</th>
-                        </thead>
 
-                        <tbody>
-                          <!-- v debug v -->
-                         @foreach ($albums as $album)
-                            <tr data-id="{{ $album->id }}">
-                                <td>{{ $album->users->name}}</td>
-                                <td>{{ $album->location}}</td>
-                                <td>{{ $album->post_text }}</td>
-                                <td>{{ $album->updated_at }}</td>
 
-                                <!-- dropdown? -->
-                                <td class="d-flex">
-                                    <!-- <a href="{{ route('user.albums.show', $album->id) }}" class="btn btn-dark mx-1 mb-1">View</a> -->
-                                    <a href="{{ route('user.albums.edit', $album->id) }}" class="btn btn-warning mx-1 mb-1">Edit</a>
-                                    <form method="POST" action="{{ route('user.albums.destroy', $album->id) }}">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token"  value="{{ csrf_token() }}">
-                                    <button type="submit" class="form-control btn btn-danger mx-1 mb-1">Delete</a>
-                                    </form>
-                                  </form>
-                                </td>
-
-                            </tr>
-                           @endforeach
-                        </tbody>
-                    </table>
                   @endif
                 </div>
             </div>

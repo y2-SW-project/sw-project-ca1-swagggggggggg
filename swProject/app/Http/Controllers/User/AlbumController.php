@@ -85,9 +85,38 @@ class AlbumController extends Controller
                 // get the album above, and then the edit view
                 // will display the album, and allow the admin
                 // to edit the album.
-                return view('admin.albums.edit', [
+                return view('user.albums.edit', [
                     'album' => $album
                 ]);
+            }
+
+            /**
+             * Update the specified resource in storage.
+             *
+             * @param  \Illuminate\Http\Request  $request
+             * @param  int  $id
+             * @return \Illuminate\Http\Response
+             */
+            public function update(Request $request, $id)
+            {
+
+                //When user clicks on submit on the Edit View
+                // this function will be called.
+
+                // first get the existing album that the user is update
+                $album = Album::findOrFail($id);
+                $request->validate([
+                    'post_text' => 'required|min:20|max:250',
+                ]);
+
+                // if validation passes then update existing album
+                $album->post_text = $request->input('post_text');
+                $album->location = $request->input('location');
+            
+                $album->save();
+
+                return redirect()->route('user.albums.index');
+
             }
 
             public function destroy($id)

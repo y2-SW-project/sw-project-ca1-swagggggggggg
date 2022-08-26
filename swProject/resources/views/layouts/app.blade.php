@@ -24,17 +24,13 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
 
                 <a class="text-muted navbar-brand" href="{{ url('/home') }}">
                     {{ ('Home') }}
                 </a>
-                <a class="text-muted navbar-brand" href="{{ url('/') }}">
-                    {{('Welcome') }}
-                </a>
-
                 <a class="text-muted navbar-brand" href="{{ url('/about') }}">
                     {{ ('About') }}
                 </a>

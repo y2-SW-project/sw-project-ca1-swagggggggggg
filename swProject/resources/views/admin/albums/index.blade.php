@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
-@section ('content')
-  <div class="container">
+@section('content')
+<div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header align-items-center d-flex">
-            <h5>Albums</h5>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header align-items-center d-flex">
+                <h5>Dashboard</h5>
 
+<!-- this modal unfortunately has a problem with the submit button -->
+<!--                           HAD* -> hierarchy error: form was in modal body, so submit had no link -->
 
-          <button type="button" class="ms-auto btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add listing
+                <button type="button" class="ms-auto btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add post
           </button>
 
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -23,94 +25,87 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="modal-body">
-                <form method="POST" action="{{ route('admin.albums.store')  }}">
-              <input type="hidden" name="_token" value="{{  csrf_token()  }}">
-              <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" />
-              </div>
-              <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" />
-              </div>
-              <div class="form-group">
-                <label for="artists">Artist(s)</label>
-                <input type="text" class="form-control" id="artists" name="artists" value="{{ old('artists') }}" />
-              </div>
-              <div class="form-group">
-                <label for="tracks">Tracks</label>
-                <input type="text" class="form-control" id="tracks" name="tracks" value="{{ old('tracks') }}" />
-              </div>
-              <div class="form-group">
-                <label for="release_date">Release Date</label>
-                <input type="date" class="form-control" id="release_date" name="release_date" value="{{ old('release_date') }}" />
-              </div>
-              <div class="form-group">
-                <label for="price">Price</label>
-                <input type="decimal" class="form-control" id="price" name="price" value="{{ old('price') }}" />
-              </div>
-              <div class="form-group">
-                <label for="contact_name">Contact Name</label>
-                <input type="text" class="form-control" id="contact_name" name="contact_name" value="{{ old('contact_name') }}" />
-              </div>
-              <div class="form-group">
-                <label for="contact_email">Contact Email</label>
-                <input type="email" class="form-control" id="contact_email" name="contact_email" value="{{ old('contact_email') }}" />
-              </div>
-              <div class="form-group">
-                <label for="contact_phone">Contact Phone</label>
-                <input type="text" class="form-control" id="contact_phone" name="contact_phone" value="{{ old('contact_phone') }}" />
-              </div>
-            </form>
-                </div>
 
-                <div class="modal-footer">
+              <form method="POST" action="{{ route('admin.albums.store')  }}">
+              <input type="hidden" name="_token" value="{{  csrf_token()  }}">
+
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="post_text">Post Text</label>
+                  <input type="text" class="form-control" id="post_text" name="post_text" value="{{ old('post_text') }}" />
+                </div>
+                <div class="form-group">
+                  <label for="location">Location (optional)</label>
+                  <input type="text" class="form-control" id="location" name="location" value="{{ old('location') }}" />
+                </div>
+              </div>
+
+              <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                   <button type="submit" class="btn btn-primary float-right">Submit</button>
-                </div>
+              </div>
+
+              </form>
+
               </div>
             </div>
           </div>
+        </div>                          
 
-          </div>
-          <div class="card-body">
-            @if (count($albums)=== 0)
-            <p class="text-muted">There's nothing being sold right now. Check back soon!</p>
-            @else
-            <table id="table-albums" class="table table-hover">
-                <thead>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Artist(s)</th>
-                  <th>Tracks</th>
-                  <th>Release Date</th>
-                </thead>
-                <tbody>
+
+                <div class="card border border-2 border-secondary rounded">
+                  <div class="card-body">
+                    
+                  @if (count($albums)=== 0)
+                  <p class="text-muted">Start the conversation!</p>
+                  @else
+
+                  
                   @foreach ($albums as $album)
-                    <tr data-id="{{ $album->id }}">
-                      <td>{{ $album->title }}</td>
-                      <td>{{ $album->description }}</td>
-                      <td>{{ $album->artists }}</td>
-                      <td>{{ $album->tracks }}</td>
-                      <td>{{ $album->release_date }}</td>
-                      <td>
-                        <a href="{{ route('admin.albums.show', $album->id) }}" class="mb-2 btn btn-dark">View</a>
-                        <a href="{{ route('admin.albums.edit', $album->id) }}" class="mb-2 btn btn-warning">Edit</a>
-                        <form style="display:inline-block" method="POST" action="{{ route('admin.albums.destroy', $album->id) }}">
-                          <input type="hidden" name="_method" value="DELETE">
-                          <input type="hidden" name="_token"  value="{{ csrf_token() }}">
-                          <button type="submit" class="form-cotrol mb-2 btn btn-danger">Delete</a>
-                        </form>
-                      </td>
-                    </tr>
+                      <div data-id="{{ $album->id }}">
+
+                        <div class="d-flex mb-0 align-items-top">
+                          <h2 class="text-decoration-underline fs-5">{{ $album->users->name}}</h2>
+
+                          <div class="dropdown ms-auto">
+                            <button class="btn btn-sm btn-dark fs-5 rounded-5 py-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              @if (auth()->id() == $album->user_id)
+                              <li>
+                                <a href="{{ route('admin.albums.edit', $album->id) }}" class="form-control btn btn-warning my-1">Edit</a>
+                              </li>
+                              @endif
+                              <li>
+                                <!-- admin is able to delete any posts as part of moderator duties -->
+                                <form method="POST" action="{{ route('admin.albums.destroy', $album->id) }}">
+                                  <input type="hidden" name="_method" value="DELETE">
+                                  <input type="hidden" name="_token"  value="{{ csrf_token() }}">
+                                  <button type="submit" class="form-control btn btn-danger mb-1">Delete</a>
+                                </form>
+                              </li>
+                            </ul>
+                            
+                          </div>
+                          
+                        </div>
+
+                          <div class="d-block text-capitalize fs-6 mb-1">{{ $album->location}}</div>
+                          <div class="d-flex mb-4">
+                            <div class="pe-4 text-break">{{ $album->post_text }}</div>
+                            <div class="text-muted text-nowrap ms-auto">{{ $album->updated_at }}</div>
+                          </div>
+                      </div>
                   @endforeach
-                </tbody>
-              </table>
-            @endif
-          </div>
+                  </div>
+                </div>
+
+
+                  @endif
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 @endsection

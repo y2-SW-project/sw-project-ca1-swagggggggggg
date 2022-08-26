@@ -20,7 +20,7 @@
                 </ul>
               </div>
             @endif
-            <form method="POST" action="{{ route('admin.albums.update', $album->id)}}">
+            <form method="POST" action="{{ route('user.albums.update', $album->id)}}">
               <input type="hidden" name="_token" value="{{  csrf_token()  }}">
               <input type="hidden" name="_method" value="PUT">
 
@@ -34,8 +34,8 @@
               </div>
               
 
-              <a href="{{ route('admin.albums.index') }}" class="btn btn-outline">Cancel</a>
-              <button type="submit" class="btn btn-primary float-right">Submit</button>
+              <a href="{{ route('user.albums.index') }}" class="my-2 mx-1 btn btn-secondary">Cancel</a>
+              <button type="submit" class="my-2 mx-1 btn btn-primary float-right">Submit</button>
             </form>
           </div>
         </div>

@@ -42,6 +42,7 @@ Route::post('/user/albums/store', [UserAlbumController::class, 'store'])->name('
 
 // Route::get('/user/albums/create', [UserAlbumController::class, 'create'])->name('user.albums.create');
 Route::get('/user/albums/{id}/edit', [UserAlbumController::class, 'edit'])->name('user.albums.edit');
+Route::put('/user/albums/{id}', [UserAlbumController::class, 'update'])->name('user.albums.update');
 Route::delete('/user/albums/{id}', [UserAlbumController::class, 'destroy'])->name('user.albums.destroy');
 
 Route::get('/admin/albums', [AdminAlbumController::class, 'index'])->name('admin.albums.index');

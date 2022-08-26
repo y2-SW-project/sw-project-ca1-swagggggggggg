@@ -53,8 +53,11 @@ class AlbumController extends Controller
             'post_text' => 'required|min:20|max:250'
         ]);
 
+        $id= Auth::id();
+
         // if validation passes create the new book
         $album = new Album();
+        $album->user_id = $id;
         $album->post_text = $request->input('post_text');
         $album->location = $request->input('location');
         
@@ -112,20 +115,13 @@ class AlbumController extends Controller
         // first get the existing album that the user is update
         $album = Album::findOrFail($id);
         $request->validate([
-            'title' => 'required',
-            'description' =>'required|max:500',
+            'post_text' => 'required|min:20|max:250',
         ]);
 
         // if validation passes then update existing album
-        $album->title = $request->input('title');
-        $album->description = $request->input('description');
-        $album->artists = $request->input('artists');
-        $album->tracks = $request->input('tracks');
-        $album->release_date = $request->input('release_date');
-        $album->price = $request->input('price');
-        $album->contact_name = $request->input('contact_name');
-        $album->contact_email = $request->input('contact_email');
-        $album->contact_phone = $request->input('contact_phone');
+        $album->post_text = $request->input('post_text');
+        $album->location = $request->input('location');
+       
         $album->save();
 
         return redirect()->route('admin.albums.index');
