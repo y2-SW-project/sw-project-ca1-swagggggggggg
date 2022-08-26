@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Welcome to Vinny's Vinyls
+                    REBOOOTT
 
                     <div class="mt-2 d-block">
                         Read more <a href="{{route('about') }}"> about us!</a>

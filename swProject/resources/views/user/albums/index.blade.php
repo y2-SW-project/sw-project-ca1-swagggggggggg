@@ -32,7 +32,8 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label for="post_text">Post Text</label>
-                  <input type="text" class="form-control" id="post_text" name="post_text" value="{{ old('post_text') }}" />
+                  <input title="please use the correct amount of characters" pattern="{20, 500}" type="text" class="form-control" id="post_text" name="post_text" value="{{ old('post_text') }}" />
+                  <p class="text-muted m-1">Minimum of 20 characters, maximum of 500</p>
                 </div>
                 <div class="form-group">
                   <label for="location">Location (optional)</label>
